@@ -19,6 +19,15 @@ server.post('/api/messages', connector.listen());
 // Create your bot with a function to receive messages from the user
 var bot = new builder.UniversalBot(connector);
 
+//Creates a backchannel event
+const createEvent = (eventName, value, address) => {
+    var msg = new builder.Message().address(address);
+    msg.data.type = "event";
+    msg.data.name = eventName;
+    msg.data.value = value;
+    return msg;
+}
+
 bot.dialog('/', [
     (session) => {
         session.endDialog(session.message.text);
@@ -51,11 +60,4 @@ bot.dialog('changeBackground', [
     }
 });
 
-//Creates a backchannel event
-const createEvent = (eventName, value, address) => {
-    var msg = new builder.Message().address(address);
-    msg.data.type = "event";
-    msg.data.name = eventName;
-    msg.data.value = value;
-    return msg;
-}
+
