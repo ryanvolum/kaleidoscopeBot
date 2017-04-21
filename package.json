@@ -1,0 +1,24 @@
+{
+  "name": "kaleidoscopebot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "botbuilder": "^3.7.0",
+    "restify": "^4.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryanvolum/kaleidoscopeBot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryanvolum/kaleidoscopeBot/issues"
+  },
+  "homepage": "https://github.com/ryanvolum/kaleidoscopeBot#readme"
+}
