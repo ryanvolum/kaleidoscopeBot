@@ -19,14 +19,7 @@ server.post('/api/messages', connector.listen());
 // Create your bot with a function to receive messages from the user
 var bot = new builder.UniversalBot(connector);
 
-//Creates a backchannel event
-const createEvent = (eventName, value, address) => {
-    var msg = new builder.Message().address(address);
-    msg.data.type = "event";
-    msg.data.name = eventName;
-    msg.data.value = value;
-    return msg;
-}
+
 
 bot.dialog('/', [
     (session) => {
@@ -59,5 +52,54 @@ bot.dialog('changeBackground', [
         callback(null, score);
     }
 });
+
+bot.dialog('changeCSS', [
+    (session) => {
+        session.send("Changing CSS");
+        var backgroundEvent = createEvent("changeCSS", "change css", session.message.address);
+        session.endDialog(backgroundEvent);
+    }
+]).triggerAction({
+    onFindAction: (context, callback) => {
+        var score = (context.message.text.startsWith("change css")) ? 200 : 0;
+        callback(null, score);
+    }
+});
+
+bot.dialog('morePolygons', [
+    (session) => {
+        session.send("Making more polygons");
+        var backgroundEvent = createEvent("morePolygons", "more polygons", session.message.address);
+        session.endDialog(backgroundEvent);
+    }
+]).triggerAction({
+    onFindAction: (context, callback) => {
+        var score = (context.message.text.startsWith("more polygons")) ? 200 : 0;
+        callback(null, score);
+    }
+});
+
+bot.dialog('lessPolygons', [
+    (session) => {
+        session.send("Reducing number of polygons");
+        var backgroundEvent = createEvent("fewerPolygons", "fewer polygons", session.message.address);
+        session.endDialog(backgroundEvent);
+    }
+]).triggerAction({
+    onFindAction: (context, callback) => {
+        var score = (context.message.text.startsWith("fewer polygons")) ? 200 : 0;
+        callback(null, score);
+    }
+});
+
+//Creates a backchannel event
+const createEvent = (eventName, value, address) => {
+    var msg = new builder.Message().address(address);
+    msg.data.type = "event";
+    msg.data.name = eventName;
+    msg.data.value = value;
+    return msg;
+}
+
 
 
